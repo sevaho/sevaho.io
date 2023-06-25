@@ -1,0 +1,8 @@
+baseURL = 'https://sevaho.io'
+languageCode = 'nl-be'
+title = 'Sebastiaan Van Hoecke'
+
+[params]
+    description = 'Portfolio website of Sebastiaan Van Hoecke.'
+
+enableRobotsTXT = true

@@ -1,0 +1,215 @@
+ <!DOCTYPE html>
+<html lang="nl">
+
+    <head>
+        {{ $title := print .Site.Title " | " .Title }}
+        {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
+        {{ $description := print .Site.Params.Description }}
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatibe" content="IE=edge,chrome=1">
+
+        <meta content='{{ $title }}' property='og:site_name'>
+        <meta content='{{ $title }}' property='og:title'>
+        <meta name="og:title" content="{{ $title }}"/>
+        <meta name="description" content="{{ $description }}"/>
+        <meta name="og:description" content="{{ $description }}"/>
+        <meta property="og:site_name" content="Sebastiaan Van Hoecke">
+        <meta name="robots" content="index,follow,noodp">
+        <meta content='https://www.sevaho.io/' property='og:url'>
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="msapplication-tap-highlight" content="no">
+
+        <meta name="classification" content="portfolio">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="application-name" content="Sebastiaan Van Hoecke">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-title" content="Sebastiaan Van Hoecke">
+        <meta name="author" content="Sebastiaan Van Hoecke">
+        <meta name="keywords" content="Sebastiaan Van Hoecke portfolio, blog, IT, Linux, software" />
+        <meta name="subject" content="Sebastiaan Van Hoecke">
+        <meta name="summary" content="Sebastiaan Van Hoecke">
+
+
+        <title>{{ $title }}</title>
+
+        {{ with resources.Get "favicon.png" }}
+        {{ with .Resize "15x webp" }}
+        <link rel="icon" href="{{ .RelPermalink }}" />
+        {{ end }}
+        {{ end }}
+
+        <!-- MAIN CSS -->
+        {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "style.main.scss" . | toCSS | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
+
+
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106638855-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments)};
+            gtag('js', new Date());
+            gtag('config', 'UA-106638855-1');
+        </script>
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org/",
+        "@type": "Portfolio website",
+        "name": "{{ .Site.Title }}",
+        "author": {
+            "@type": "Person",
+            "name": "Sebastiaan Van Hoecke",
+            "email": "sebastiaan@sevaho.io"
+        },
+        "description": "{{ $description }}"
+        }
+        </script>
+
+    </head>
+
+    <body>
+        <div id="loader-wrapper">
+			<div id="loader"></div>
+		</div>
+    <section id="page-welcome" class="pages">
+            <div id="page-welcome_terminal">
+                <div id="page-welcome_terminal_header">
+                    <div id="page-welcome_terminal_title">Terminal</div>
+                </div>
+                <div id="page-welcome_terminal_field">
+                    <div id="page-welcome_terminal_text">[sebastiaan@sevaho ~]$ <span id="typed"></span></div>
+                </div>
+            </div>
+
+            <div id="page-welcome_arrow" class="bounce">
+                <a href="#page-whoami">
+                    {{ $image := resources.Get ("images/arrow.png") }}
+                    <img src="{{ $image.RelPermalink }}" width="25px" height="30px">
+                </a>
+            </div>
+    </section>
+    <div class="main">
+        <nav class="menu" tabindex="0">
+            <div class="smartphone-menu-trigger">
+                <div class="menu_bar"></div>
+                <div class="menu_bar"></div>
+                <div class="menu_bar"></div>
+            </div>
+            <div id="nav-menu">
+                <a href="#page-whoami">About me</a>
+                <a href="#page-interests">Interests</a>
+                <a href="#page-skills">Skills</a>
+                <a href="#page-footer">Contact</a>
+            </div>
+        </nav>
+        <section id="page-whoami" class="pages">
+            <h1>About me</h1>
+            <div class="spacer centered"></div>
+            <div class="flex fadeinonscroll">
+                <div>
+                    {{ $image := resources.Get ("images/me.jpg") }}
+                    <img src="{{ $image.RelPermalink }}">
+                </div>
+                <div>
+                    <p>I am Sebastiaan Van Hoecke and I am CIO at <a href="https://www.wegroup.be">WeGroup</a>, an innovative insurtech company based in Belgium. My passion lies in a diverse range of fields, including Software architecture, Linux, security, and AI. I'm also deeply interested in Ethical hacking and web design/development.</p>
+                <p>I am 28 years old and reside in Dendermonde.</p>
+                <p>When I'm not immersed in the world of technology, I enjoy spending quality time with my close-knit group of friends. Whether it's going out for some fun or simply engaging in lively conversations, I cherish these moments. Music is another avenue that brings me joy, with a penchant for electronic tunes as well as timeless classics that have stood the test of time. To maintain a healthy work-life balance, I prioritize my physical well-being by dedicating time to running two times a week, doing a daily yoga session and engaging in a game of squash.</p>
+                </div>
+            </div>
+        </section>
+        <section id="page-interests" class="pages">
+            <h1>Interests</h1>
+            <div class="spacer centered"></div>
+            <p style="text-align: center;">
+            These interests fuel my drive to constantly learn, innovate, and contribute to the ever-evolving world of technology.
+            </p>
+            <div class="flex">
+                <div>
+                    <div class="card">
+                        <div class="textblock"><h2>Linux & Opensource</h2></div>
+                        <div class="textblock-hidden">
+                            <h2>Linux & Opensource</h2>
+                            <div class="subspacer centered"></div>
+                            <p>Linux has always been at the core of my passion for technology. Its open-source nature and robust architecture have driven me to explore its vast possibilities. Embracing the open-source philosophy, I believe in the collaborative spirit that fuels innovation and empowers individuals to create remarkable solutions.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="textblock"><h2>Network & sysadmin</h2></div>
+                        <div class="textblock-hidden">
+                            <h2>Network & sysadmin</h2>
+                            <div class="subspacer centered"></div>
+                            <p>As a passionate network and sysadmin professional, I am driven by the world of networking technologies. From configuring routers and switches to optimizing network performance. With an approach to system administration, I expertly manage and maintain critical infrastructure to keep operations running smoothly.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <div class="textblock"><h2>Web Design & Development</h2></div>
+                        <div class="textblock-hidden">
+                            <h2>Web Design & Development</h2>
+                            <div class="subspacer centered"></div>
+                            <p>Web design and development are my creative outlets. I bring ideas to life with a keen eye for design principles and the latest web technologies. With a strong foundation in HTML, CSS, and JavaScript, I create intuitive interfaces that captivate users and deliver meaningful content.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="textblock"><h2>Software Architecture</h2></div>
+                        <div class="textblock-hidden">
+                            <h2>Software Architecture</h2>
+                            <div class="subspacer centered"></div>
+                            <p>Designing efficient and scalable system architectures is my forte. I enjoy dissecting complex problems and crafting solutions that optimize performance and reliability. By carefully analyzing requirements and integrating seamlessly with existing infrastructures, I architect to lay the foundation for future growth.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <div class="textblock"><h2>AI</h2></div>
+                        <div class="textblock-hidden">
+                            <h2>AI</h2>
+                            <div class="subspacer centered"></div>
+                            <p>Artificial Intelligence captivates me with its transformative potential. I immerse myself in machine learning, natural language processing, and other AI technologies. My aim is to develop intelligent systems that enhance user experiences, automate processes, and extract valuable insights from vast amounts of data.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="textblock"><h2>Security</h2></div>
+                        <div class="textblock-hidden">
+                            <h2>Security</h2>
+                            <div class="subspacer centered"></div>
+                            <p>In an interconnected world, security is paramount. I am committed to safeguarding digital assets and ensuring the confidentiality, integrity, and availability of systems. With expertise in cybersecurity principles and practices, I conduct penetration testing and implement robust security measures.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="page-skills" class="pages">
+            <h1>Skills</h1>
+            <div class="spacer centered"></div>
+                <h2>Hard</h2>
+                <p>Python, Golang, HTML/JS/CSS, SQL, C++, ASM.m, C#/.NET, PHP, Bash, Powershell.</p>
+                <p>Docker, LXC, Kubernetes, Vagrant, Pentesting, Virtualization, Continuous Integration, Ansible, Terraform, Pulumi, Linux-Windows-BSD server knowledge, Server Security, Encryption, VPN, MPLS.</p>
+                <p>AWS, GCP, DigitalOcean, Linode.</p>
+                <p>Manager, Software architecture, system design, risk management, principle of least privilege.</p>
+                <h2>Soft</h2>
+                <p>With a realistic and logical mindset, I possess the ability to adapt swiftly to change. I thrive on creative and out-of-the-box thinking, constantly exploring new ideas and possibilities. Driven by curiosity, I am always eager to learn and embrace new concepts. With a strong sense of determination, I approach challenges with a resolute attitude, ensuring that I conquer obstacles and achieve desired outcomes.</p>
+        </section>
+        <section id="page-footer">
+            <div id="page-footer_text">
+                <p>© 2023 | Sebastiaan Van Hoecke</p>
+                <p>sebastiaan@sevaho.io</p>
+                <p>-Content powered by chatgpt-</p>
+            </div>
+            <div id="page-footer_buttons">
+                {{ $image := resources.Get ("images/linkedin.png") }}
+                <a target="_blank" href="https://be.linkedin.com/in/sebastiaan-van-hoecke-05a7a0128"><img class="social_media_buttons" id="linkedin" src="{{ $image.RelPermalink }}"></a>
+                {{ $image := resources.Get ("images/github.png") }}
+                <a target="_blank" href="https://github.com/sevaho"><img  class="social_media_buttons" id="github" src="{{ $image.RelPermalink }}"></a>
+            </div>
+        </section>
+    </div>
+
+        {{ $js := resources.Get "js/app.js" | js.Build | resources.Minify | fingerprint -}}
+        <script src="{{ $js.RelPermalink }}"></script>
+
+    </body>
+
+</html>
