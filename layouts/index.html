@@ -43,7 +43,7 @@
         {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "style.main.scss" . | toCSS | minify | fingerprint }}
         <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
 
-        <script defer src="https://umami.internal.asic.li/x" data-website-id="6b4d2136-8d6e-44a2-a3e8-eaca9e03c236"></script>
+        <script defer src="https://umami.asic.li/x" data-website-id="6b4d2136-8d6e-44a2-a3e8-eaca9e03c236"></script>
 
         <script type="application/ld+json">
         {
